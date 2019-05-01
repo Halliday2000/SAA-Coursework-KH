@@ -1,6 +1,7 @@
 package DealerShipTest;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class DealershipTest {
 
@@ -14,18 +15,28 @@ public class DealershipTest {
 		CarCounter = 1;
 		Integer choice;
 		do {
-            System.out.println("0: Quit");
-            System.out.println("1: Add a new make of car");
-            System.out.println("2: Display makes of car available");
-            System.out.println("3: Remove make of car");
+            System.out.println("0: End Session");
+            System.out.println("1: Search For Make/manufacturer of Car");
+            System.out.println("2: Remove a make of Car");
+            System.out.println("3: Display All Makes/Manufacturers");
+            System.out.println("4: Add a New Make/Manufacturer of Car");
             
-            choice = Input.getInteger("Enter Choice: ");
+            Scanner sc = new Scanner(System.in);
+            do {
+                System.out.println("Enter Choice: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("Error Please Enter Choice Again: ");
+                    sc.next();
+                }
+                choice = sc.nextInt();
+            } while (choice <= 0);
+            
             switch (choice){
             case 0:
-            	data = Dealership.NewMake();
-            	if(!Makes.contains(data))
-            	       Makes.add(data);
-            
+            	
+            	System.out.println("Session Ended");
+            	System.exit(0);
+            	
             	break;
             case 1:
             	Search = Input.getString("Search for car Manufacturers/Makes: ");    
@@ -39,7 +50,7 @@ public class DealershipTest {
             	if(TF) {
             	     System.out.println(Search + " : We sell this make");
             	 } else {
-            		 System.out.println(Search + " : Make unavailable");
+            		 System.out.println("Make '" + Search + "' is unavailable");
             	 }
             
             	break;
@@ -55,13 +66,29 @@ public class DealershipTest {
             	break;
             case 3:
             	
-        		for (int i = 0; i < Makes.size(); i++) {
-        			System.out.println(Makes.get(i));
+        		if (Makes.isEmpty()) {
+        			System.out.println("Error No Records");
+        		} else {
+                	for (int i = 0; i < Makes.size(); i++) {
+            			System.out.println(Makes.get(i));
+            		}
         		}
                 
             	break;
+            case 4:
+            	
+            	data = Dealership.NewMake();
+            	if(!Makes.contains(data)) {
+            	       Makes.add(data);
+            	       System.out.println(data + " Added Successfully");
+            	} else {
+            		   System.out.println("Error Unsuccessful");
+            	}
+            	
+            	break;
             default:
-            	System.out.println("The choice you have entered is invalid please try another");
+            	
+            	System.out.println("Error Please Enter Choice Again: ");
             }
 		}while(choice!=0);
 

@@ -9,8 +9,7 @@ public class Dealership {
 	
 	public static String NewMake() {
 		String Manufac;
-		Manufac = Input.getString("Enter The new Make/Manufacturor");
+		Manufac = Input.getString("Enter The new Make/Manufacturor: ");
 		return Manufac;
 	}
 }
- 
