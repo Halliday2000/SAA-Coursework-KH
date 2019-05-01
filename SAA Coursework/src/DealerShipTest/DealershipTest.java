@@ -30,7 +30,7 @@ public class DealershipTest {
                     sc.next();
                 }
                 choice = sc.nextInt();
-            } while (choice < 0);
+            } while (choice <= 0);
             
             switch (choice){
             case 0:
@@ -60,6 +60,7 @@ public class DealershipTest {
             	Search = Input.getString("Search Make/Manufacturer to Remove: ");
             	if (Makes.contains(Search)) {
             		Makes.remove(Search);
+            		System.out.println("Removed Successfully");
             	} else {
             	    System.out.println("Error No Match Found");
             	}

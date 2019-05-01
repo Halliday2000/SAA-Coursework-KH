@@ -15,6 +15,20 @@ public class Car {
 		this.Reg = regi;
 		this.Colour = colour;
 	}
+	
+	public String getMake() {
+		return Make;
+	}
+	public String getModel() {
+		return Model;
+	}
+	public String getReg() {
+		return Reg;
+	}
+	public String getColour() {
+		return Colour;
+	}
+	
 	public static ArrayList<Car> addCar(ArrayList<String> Makes, Integer CarCounter, ArrayList<Car> Cars) {
 		Integer Select;
 		boolean TF=false;
@@ -54,5 +68,14 @@ public class Car {
 	
 		return Cars;
 	    }
+	
+	public static String removeCar(ArrayList<Car> Cars) {
+		String Search;
+		Search = Input.getString("Enter Reg Of Car To Remove");
+		return Search;
+		
+		
+		
+	}
 	
 	}
