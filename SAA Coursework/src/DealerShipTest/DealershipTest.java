@@ -6,13 +6,13 @@ import java.util.Scanner;
 public class DealershipTest {
 
 	public static void main(String[] args) {
-		String[] Cars;
+		ArrayList<Car> Cars = new ArrayList<Car>();
 		ArrayList<String> Makes = new ArrayList<String>();
 		String data;
 		Integer CarCounter;
 		String Search;
 		boolean TF=false;
-		CarCounter = 1;
+		CarCounter = 0;
 		Integer choice;
 		do {
             System.out.println("0: End Session");
@@ -20,6 +20,7 @@ public class DealershipTest {
             System.out.println("2: Remove a make of Car");
             System.out.println("3: Display All Makes/Manufacturers");
             System.out.println("4: Add a New Make/Manufacturer of Car");
+            System.out.println("5: Add a New Car");
             
             Scanner sc = new Scanner(System.in);
             do {
@@ -29,7 +30,7 @@ public class DealershipTest {
                     sc.next();
                 }
                 choice = sc.nextInt();
-            } while (choice <= 0);
+            } while (choice < 0);
             
             switch (choice){
             case 0:
@@ -50,7 +51,7 @@ public class DealershipTest {
             	if(TF) {
             	     System.out.println(Search + " : We sell this make");
             	 } else {
-            		 System.out.println("Make '" + Search + "' is unavailable");
+            		 System.out.println("Make '" + Search + "' is unavailable please try something else");
             	 }
             
             	break;
@@ -81,9 +82,17 @@ public class DealershipTest {
             	if(!Makes.contains(data)) {
             	       Makes.add(data);
             	       System.out.println(data + " Added Successfully");
-            	} else {
+            	} else if ((Makes.contains(data))){
+            		   System.out.println("Error Already Exists");
+            	} else
             		   System.out.println("Error Unsuccessful");
-            	}
+            	
+            		
+            	break;
+            case 5:
+            	
+            	Cars = Car.addCar(Makes, CarCounter, Cars);
+            	CarCounter ++;
             	
             	break;
             default:
