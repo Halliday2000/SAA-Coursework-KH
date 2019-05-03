@@ -1,0 +1,180 @@
+package DealerShipTest;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Car {
+	public   String make;
+	private  String reg;
+	private  String model;
+	private  String colour;
+	
+	public void setMake(String CMake) {
+	    make = CMake;
+	}
+	public void setReg(String CReg) {
+	    reg = CReg;
+	}
+	public void setModel(String CModel) {
+	    model = CModel;
+	}
+	public void setColour(String CColour) {
+	    colour = CColour;
+	}
+
+	public String getMake() {
+	    return make;
+	}
+	public String getReg() {
+	    return reg;
+	}
+	public String getModel() {
+	    return model;
+	}
+	public String getColour() {
+	    return colour;
+	}
+	
+
+	public ArrayList<Car> addCar(ArrayList<String> Makes, ArrayList<Car> cars) {
+		Integer select;
+		boolean Equal = false;
+        for (int i = 0; i < Makes.size(); i++) {
+			System.out.println(i + ": " + Makes.get(i));
+		}
+		
+		Scanner choice = new Scanner(System.in);
+	             {
+	                System.out.println("Enter Numeric Choice: ");
+	                while (!choice.hasNextInt()) {
+	                    System.out.println("Error Please Enter Numeric Choice Again: ");
+	                    choice.next();
+	                }
+	                
+	            }
+	             select = choice.nextInt();
+	    if (select >= Makes.size()) { 
+	    	System.out.println("No records exist (Number entered too large) Please try again");
+	    } else {
+			for (int i = 0; i < Makes.size(); i++) {
+	              if(Equal = Makes.get(i).equals(Makes.get(select))){
+	                   break;
+	              }
+			}
+	                
+	        	if(Equal == true) {
+	        		 Car newCar;
+	        		 make = Makes.get(select);
+	        		 reg = Input.getString("What is the registration: ");
+	        		 model = Input.getString("What is the Model: ");
+	        		 colour = Input.getString("What is the Colour: ");
+	        		 newCar = new Car();
+	        		 newCar.setMake(make);
+	        		 newCar.setReg(reg);
+	        		 newCar.setModel(model);
+	        		 newCar.setColour(colour);
+	        		 cars.add(newCar);
+	        		 System.out.println("Car added Successfully");
+	        	 } else {
+	        		 System.out.println("Make is unavailable Please Try Again");
+	        	 }
+	                
+	    }
+	
+		return cars;
+	    }
+
+public static void displayCars(ArrayList<Car> cars) {
+	String search;
+	search = Input.getString("Enter Make of Car: ");
+	for (int i= 0; i < cars.size(); i++) {
+	if(cars.get(i).getMake().equals(search)) {
+		System.out.println("Search: " + search);
+		System.out.println("Car " + (i+1) + ":");
+	    System.out.print("Make: " + cars.get(i).getMake());
+	    System.out.println();
+	    System.out.print("Registration: " + cars.get(i).getReg());
+	    System.out.println();
+	    System.out.print("Model: " + cars.get(i).getModel());
+	    System.out.println();
+	    System.out.print("Colour: " + cars.get(i).getColour());
+	    System.out.println();
+	    System.out.println();
+	}
+	}		
+}
+	
+public static void displayAll(ArrayList<Car> cars) {
+	for(int i = 0; i < cars.size(); i++) {
+		System.out.println("Car " + (i+1) + ":");
+	    System.out.print("Make: " + cars.get(i).getMake());
+	    System.out.println();
+	    System.out.print("Registration: " + cars.get(i).getReg());
+	    System.out.println();
+	    System.out.print("Model: " + cars.get(i).getModel());
+	    System.out.println();
+	    System.out.print("Colour: " + cars.get(i).getColour());
+	    System.out.println();
+	    System.out.println();
+	} 
+	
+}
+
+public ArrayList<Car> removeCar(ArrayList<Car> cars) {
+	String search;
+	Integer count;
+	count = 0;
+	search = Input.getString("Remove Records Containing Make: ");
+	
+	
+	for(int i = 0; i < cars.size(); i++) {
+		if(cars.get(i).getMake().equals(search)) {
+			cars.remove(i);
+			count ++;	
+		}
+	}
+	
+	if (!cars.contains(search)){
+		System.out.println("No records of this manufacturer exist");
+	}
+	
+	if(cars.get(0).equals(search)) {
+		cars.remove(0);
+		count ++;
+	}
+	System.out.println(count + " Car(s) removed successfully");
+	
+	return cars;
+}
+
+public static void displayMM (ArrayList<Car> cars) {
+	String modsearch;
+	String makesearch;
+	makesearch = Input.getString("What is the Make of Car: ");
+	modsearch = Input.getString("What is the Model of Car: ");
+	
+	for(int i = 0; i < cars.size(); i++) {
+		if (cars.get(i).getMake().equals(makesearch)) {
+			if (cars.get(i).getModel().equals(modsearch)) {
+				System.out.println("Match Found");
+				System.out.println("Car " + (i+1) + ":");
+			    System.out.print("Make: " + cars.get(i).getMake());
+			    System.out.println();
+			    System.out.print("Registration: " + cars.get(i).getReg());
+			    System.out.println();
+			    System.out.print("Model: " + cars.get(i).getModel());
+			    System.out.println();
+			    System.out.print("Colour: " + cars.get(i).getColour());
+			    System.out.println();
+			    System.out.println();
+			}
+		}
+	}
+		
+	if (cars.contains(makesearch)){
+		System.out.println("No records for Make: " + makesearch);
+	} else if (cars.contains(modsearch)) {
+		System.out.println("There are records for Make: " + makesearch + " but none of them contain Model: " + modsearch);
+	}
+}
+}

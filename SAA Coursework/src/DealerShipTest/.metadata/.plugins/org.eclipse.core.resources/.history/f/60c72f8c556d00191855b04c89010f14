@@ -1,0 +1,122 @@
+package DealerShipTest;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class DealershipTest {
+
+	public static void main(String[] args) {
+		ArrayList<Car> Cars = new ArrayList<Car>();
+		ArrayList<String> Makes = new ArrayList<String>();
+		Car car = new Car();
+		String tempdata;
+		String search;
+		boolean tf=false;
+		Integer choice;
+		do {
+            System.out.println("0: End Session");
+            System.out.println("1: Search For Make/manufacturer of Car");
+            System.out.println("2: Remove a make of Car");
+            System.out.println("3: Display All Makes/Manufacturers");
+            System.out.println("4: Add a New Make/Manufacturer of Car");
+            System.out.println("5: Add a New Car");
+            System.out.println("6: Remove all Cars form Manufacturer");
+            System.out.println("7: Search for Cars of a Specific Make");
+            System.out.println("8: Display All Cars");
+            
+            Scanner sc = new Scanner(System.in);
+            do {
+                System.out.println("Enter Choice: ");
+                while (!sc.hasNextInt()) {
+                    System.out.println("Error Please Enter Choice Again: ");
+                    sc.next();
+                }
+                choice = sc.nextInt();
+            } while (choice < 0);
+            
+            switch (choice){
+            case 0:
+            	
+            	System.out.println("Session Ended");
+            	System.exit(0);
+            	
+            	break;
+            case 1:
+            	search = Input.getString("Search for car Manufacturers/Makes: ");    
+            	tf = false;
+            	for(int i=0;i<Makes.size();i++){
+                    if(Makes.contains(search)){
+                    	tf=true;
+                        break;
+                    }
+                   }
+            	if(tf==true) {
+            	     System.out.println(search + " : We sell this make");
+            	 } else {
+            		 System.out.println("Make '" + search + "' is unavailable please try something else");
+            	 }
+            	 
+            
+            	break;
+            case 2:
+            	
+            	search = Input.getString("Search Make/Manufacturer to Remove: ");
+            	if (Makes.contains(search)) {
+            		Makes.remove(search);
+            	} else {
+            	    System.out.println("Error No Match Found");
+            	}
+            
+            	break;
+            case 3:
+            	
+        		if (Makes.isEmpty()) {
+        			System.out.println("Error No Records");
+        		} else {
+                	for (int i = 0; i < Makes.size(); i++) {
+            			System.out.println(Makes.get(i));
+            		}
+        		}
+                
+            	break;
+            case 4:
+            	
+            	tempdata = Dealership.NewMake();
+            	if(!Makes.contains(tempdata)) {
+            	       Makes.add(tempdata);
+            	       System.out.println(tempdata + " Added Successfully");
+            	} else if ((Makes.contains(tempdata))){
+            		   System.out.println("Error Already Exists");
+            	} else
+            		   System.out.println("Error Unsuccessful");
+            	
+            		
+            	break;
+            case 5:
+            	
+            	Cars = car.addCar(Makes, Cars);
+       
+            	break;
+            case 6:
+            	
+            	Cars = car.removeCar(Cars);
+            
+            	break;
+            case 7:
+            	
+            	Car.displayCars(Cars);
+            	
+            	break;
+            case 8:
+            	
+            	Car.displayAll(Cars);
+            	
+            	break;	
+            default:
+            	
+            	System.out.println("Error Please Enter Choice Again: ");
+            }
+		}while(choice!=0);
+
+ }
+}
