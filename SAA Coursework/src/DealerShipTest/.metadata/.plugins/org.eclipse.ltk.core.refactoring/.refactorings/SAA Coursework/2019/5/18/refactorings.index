@@ -14,3 +14,6 @@
 1556855114156	Rename field 'Reg'
 1556855126004	Rename field 'Model'
 1556855136656	Rename field 'Colour'
+1556861128349	Rename local variable 'sc'
+1556862727828	Rename local variable 'scan'
+1556862828079	Rename local variable 'scan'
