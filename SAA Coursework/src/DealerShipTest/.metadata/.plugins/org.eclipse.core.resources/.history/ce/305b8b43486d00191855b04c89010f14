@@ -1,0 +1,141 @@
+package DealerShipTest;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Car {
+	public   String Make;
+	private  String Reg;
+	private  String Model;
+	private  String Colour;
+	
+	public void setMake(String CMake) {
+	    Make = CMake;
+	}
+	public void setReg(String CReg) {
+	    Reg = CReg;
+	}
+	public void setModel(String CModel) {
+	    Model = CModel;
+	}
+	public void setColour(String CColour) {
+	    Colour = CColour;
+	}
+
+	public String getMake() {
+	    return Make;
+	}
+	public String getReg() {
+	    return Reg;
+	}
+	public String getModel() {
+	    return Model;
+	}
+	public String getColour() {
+	    return Colour;
+	}
+	
+
+	public ArrayList<Car> addCar(ArrayList<String> Makes, Integer CarCounter, ArrayList<Car> Cars) {
+		Integer Select;
+		boolean Equal = false;
+        for (int i = 0; i < Makes.size(); i++) {
+			System.out.println(i + ": " + Makes.get(i));
+		}
+		
+		Scanner choice = new Scanner(System.in);
+	             {
+	                System.out.println("Enter Numeric Choice: ");
+	                while (!choice.hasNextInt()) {
+	                    System.out.println("Error Please Enter Numeric Choice Again: ");
+	                    choice.next();
+	                }
+	                
+	            }
+	             Select = choice.nextInt();
+	    if (Select >= Makes.size()) { 
+	    	System.out.println("No records exist (Number entered too large) Please try again");
+	    } else {
+			for (int i = 0; i < Makes.size(); i++) {
+	              if(Equal = Makes.get(i).equals(Makes.get(Select))){
+	                   break;
+	              }
+			}
+	                
+	        	if(Equal == true) {
+	        		 Car newCar;
+	        		 Make = Makes.get(Select);
+	        		 Reg = Input.getString("What is the registration: ");
+	        		 Model = Input.getString("What is the Model: ");
+	        		 Colour = Input.getString("What is the Colour: ");
+	        		 newCar = new Car();
+	        		 newCar.setMake(Make);
+	        		 newCar.setReg(Reg);
+	        		 newCar.setModel(Model);
+	        		 newCar.setColour(Colour);
+	        		 Cars.add(CarCounter, newCar);
+	        	 } else {
+	        		 System.out.println("Make is unavailable Please Try Again");
+	        	 }
+	                
+	    }
+	
+		return Cars;
+	    }
+
+public static void displayCars(ArrayList<Car> Cars) {
+	String Search;
+	Search = Input.getString("Enter Make of Car: ");
+	for (int i= 0; i < Cars.size(); i++) {
+	if(Cars.get(i).getMake().equals(Search)) {
+		System.out.println("Search: " + Search);
+		System.out.println("Car " + (i+1) + ":");
+	    System.out.print("Make: " + Cars.get(i).getMake());
+	    System.out.println();
+	    System.out.print("Registration: " + Cars.get(i).getReg());
+	    System.out.println();
+	    System.out.print("Model: " + Cars.get(i).getModel());
+	    System.out.println();
+	    System.out.print("Colour: " + Cars.get(i).getColour());
+	    System.out.println();
+	    System.out.println();
+	}
+	}		
+}
+	
+public static Integer displayAll(ArrayList<Car> Cars, Integer tprinted) {
+	Integer timesprinted = tprinted;
+	for(int i = 0; i < Cars.size(); i++) {
+		System.out.println("Car " + (i+1) + ":");
+	    System.out.print("Make: " + Cars.get(i).getMake());
+	    System.out.println();
+	    System.out.print("Registration: " + Cars.get(i).getReg());
+	    System.out.println();
+	    System.out.print("Model: " + Cars.get(i).getModel());
+	    System.out.println();
+	    System.out.print("Colour: " + Cars.get(i).getColour());
+	    System.out.println();
+	    System.out.println();
+	}
+	timesprinted = (timesprinted + 1);
+	return timesprinted; 
+	
+}
+
+public ArrayList<Car> removeCar(ArrayList<Car> Cars) {
+	String Search;
+	Integer Count;
+	Count = 0;
+	Search = Input.getString("Remove Records Containing Make: ");
+	for(int i2 = 0; i2 < Cars.size(); i2++) {
+	for(int i = 0; i < Cars.size(); i++) {
+		if(Cars.get(i).getMake().equals(Search)) {
+			Cars.remove(i);
+			Count ++;	
+		}
+	}
+	}
+	System.out.println(Count + " Car(s) removed successfully");
+	return Cars;
+}
+}
