@@ -1,0 +1,69 @@
+package DealerShipTest;
+
+import java.util.Arrays;
+
+public class BinaryTree {
+
+	class Node {
+		  int key;
+		  String make;
+		
+		Node leftChild;
+	    Node rightChild;
+		Node(int key, String make) {
+	         this.key = key;
+	         this.make = make;
+		 }
+	}
+	
+	
+	Node root;
+	
+	public void addNode(int key, String Make) {
+	
+	Node newNode = new Node(key, Make);
+	
+	if (root==null) {
+		root = newNode;
+	} else {
+		Node focusNode = root;
+		Node parent;
+		while (true) {
+			parent = focusNode;
+			
+			if (key < focusNode.key) {
+				focusNode = focusNode.leftChild;
+				
+				if (focusNode == null) {
+					parent.leftChild = newNode;
+					return;
+				}
+			} else {
+				focusNode = focusNode.rightChild;
+				
+				if (focusNode == null) {
+					parent.rightChild = newNode;
+					return;
+				}
+			}
+				
+		}
+	}
+
+}
+	
+	public void inOrderTrav( Node focusNode) {
+		
+		if (focusNode != null) {
+			inOrderTrav(focusNode.leftChild);
+			System.out.println(focusNode);
+			inOrderTrav(focusNode.rightChild);
+			
+		}
+	}
+	
+	public String toString(String make, int key) {
+		return "Make: " + make + key + " Key: " + key;
+	}
+}
+
